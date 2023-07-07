@@ -1,19 +1,30 @@
 import { auth } from './config/firebaseConfig.ts';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute.tsx';
-import Home from './pages/Home.tsx';
 import Dashboard from './pages/Dashboard.tsx';
 import Login from './pages/Auth/Login.tsx';
 import Navigation from './components/Navigation.tsx';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { useEffect, useState } from 'react';
 
 function App() {
-  const user = auth.currentUser;
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+  }, [user]);
+
   return (
-    <>
-      <Navigation />
-      <h1>BeFit</h1>
+    <main className='p-10 w-full'>
+      <Navigation user={user} />
+      <h1 className='text-2xl font-bold text-gray-950'>BeFit</h1>
       <Routes>
-        <Route path='/home' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route
           path='/dashboard'
@@ -24,7 +35,7 @@ function App() {
           }
         />
       </Routes>
-    </>
+    </main>
   );
 }
 
