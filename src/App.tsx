@@ -24,15 +24,17 @@ function App() {
       <Navigation user={user} />
       <h1 className='text-2xl font-bold text-gray-950'>BeFit</h1>
       <Routes>
+        {user && (
+          <Route
+            path='/dashboard'
+            element={
+              <ProtectedRoute user={user}>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+        )}
         <Route path='/login' element={<Login />} />
-        <Route
-          path='/dashboard'
-          element={
-            <ProtectedRoute user={user}>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
       </Routes>
     </main>
   );

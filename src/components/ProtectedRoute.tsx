@@ -7,12 +7,7 @@ interface ProtectedRouteType {
 }
 
 const ProtectedRoute = ({ user, children }: ProtectedRouteType) => {
-  if (!user) {
-    console.log(user);
-    return <Navigate to='/login' replace />;
-  }
-
-  return children;
+  return user ? children : <Navigate to='/login' replace />;
 };
 
 export default ProtectedRoute;

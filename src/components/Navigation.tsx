@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { User, signOut } from 'firebase/auth';
-import { auth } from '../config/firebaseConfig';
+import { User } from 'firebase/auth';
+import SignOutBtn from './SignOutBtn';
 
 interface NavigationType {
   user: User | null;
@@ -16,7 +16,7 @@ const Navigation = ({ user }: NavigationType) => {
         <>
           <Link to='/dashboard'>Dashboard</Link>
           <p>{user.email}</p>
-          <button onClick={() => signOut(auth)}>Sign out</button>
+          <SignOutBtn />
         </>
       )}
     </nav>
