@@ -8,7 +8,7 @@ interface NavigationType {
 
 const Navigation = ({ user }: NavigationType) => {
   return (
-    <nav className='flex justify-between w-1/4 items-center'>
+    <nav className='flex justify-between w-1/3 items-center'>
       <h2 className='text-xl font-bold'>BeFit</h2>
       {user == null ? (
         <Link to='/login'>Sign In</Link>

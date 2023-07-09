@@ -10,7 +10,6 @@ const handleCreateUser = (email: string, password: string) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log(user);
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -23,8 +22,7 @@ const handleSignIn = (email: string, password: string) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
-      const user = userCredential.user;
-      console.log(user);
+      console.log(`User ${userCredential.user.email} logged in`);
     })
     .catch((error) => {
       const errorCode = error.code;

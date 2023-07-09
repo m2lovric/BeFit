@@ -15,26 +15,26 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         useUserStore.setState({ user });
+        console.log(user);
       }
     });
   }, []);
 
+  //TODO fix protected routes
   return (
     <main className='p-10 w-full'>
       <Navigation user={user} />
       <h1 className='text-2xl font-bold text-gray-950'>BeFit</h1>
       <Routes>
-        {user && (
-          <Route
-            path='/dashboard'
-            element={
-              <ProtectedRoute user={user}>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-        )}
         <Route path='/login' element={<Login />} />
+        <Route
+          path='/dashboard'
+          element={
+            <ProtectedRoute user={user}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </main>
   );

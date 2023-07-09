@@ -4,10 +4,15 @@ import { User } from 'firebase/auth';
 interface ProtectedRouteType {
   user: User | null;
   children: JSX.Element;
+  redirectPath?: string;
 }
 
-const ProtectedRoute = ({ user, children }: ProtectedRouteType) => {
-  return user ? children : <Navigate to='/login' replace />;
+const ProtectedRoute = ({
+  user,
+  children,
+  redirectPath = '/login',
+}: ProtectedRouteType) => {
+  return user ? children : <Navigate to={redirectPath} replace />;
 };
 
 export default ProtectedRoute;
