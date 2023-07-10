@@ -5,7 +5,7 @@ import {
 } from 'firebase/auth';
 const auth = getAuth();
 
-const handleCreateUser = (email: string, password: string) => {
+const signUp = (email: string, password: string) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -18,7 +18,7 @@ const handleCreateUser = (email: string, password: string) => {
     });
 };
 
-const handleSignIn = (email: string, password: string) => {
+const signIn = (email: string, password: string) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -31,4 +31,4 @@ const handleSignIn = (email: string, password: string) => {
     });
 };
 
-export { handleCreateUser, handleSignIn };
+export { signIn, signUp };
