@@ -3,7 +3,7 @@ import { User } from 'firebase/auth';
 import SignOutBtn from './SignOutBtn';
 
 interface NavigationType {
-  user: User | null;
+  user: User | null | undefined;
 }
 
 const Navigation = ({ user }: NavigationType) => {

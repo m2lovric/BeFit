@@ -1,26 +1,26 @@
 import { auth } from './config/firebaseConfig.ts';
 import Navigation from './components/Navigation.tsx';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import useUserStore from './store/userStore.ts';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute.tsx';
 import Dashboard from './pages/Dashboard.tsx';
 import Login from './pages/Auth/Login.tsx';
 
 function App() {
   const user = useUserStore((state) => state.user);
+  const navigate = useNavigate();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         useUserStore.setState({ user });
-        console.log(user);
+        navigate('/dashboard');
       }
     });
   }, []);
 
-  //TODO fix protected routes
   return (
     <main className='p-10 w-full'>
       <Navigation user={user} />

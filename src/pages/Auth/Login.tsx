@@ -1,24 +1,20 @@
 import { useState } from 'react';
 import { signIn, signUp } from './useAuth';
-import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [login, setLogin] = useState({ email: '', password: '' });
   const [signup, setSignUp] = useState({ email: '', password: '' });
-  const navigate = useNavigate();
 
   function handleSignIn(e: React.FormEvent) {
     e.preventDefault();
     signIn(login.email, login.password);
     setLogin({ email: '', password: '' });
-    navigate('/dashboard');
   }
 
   function handleSignUp(e: React.FormEvent) {
     e.preventDefault();
     signUp(signup.email, signup.password);
     setSignUp({ email: '', password: '' });
-    navigate('/dashboard');
   }
   return (
     <div>
