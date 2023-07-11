@@ -1,12 +1,13 @@
 import { auth } from './config/firebaseConfig.ts';
 import Navigation from './components/Navigation.tsx';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import useUserStore from './store/userStore.ts';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute.tsx';
 import Dashboard from './pages/Dashboard.tsx';
 import Login from './pages/Auth/Login.tsx';
+import NewWorkout from './pages/NewWorkout.tsx';
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -32,6 +33,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/new'
+          element={
+            <ProtectedRoute user={user}>
+              <NewWorkout />
             </ProtectedRoute>
           }
         />
