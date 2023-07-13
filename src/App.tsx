@@ -8,6 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute.tsx';
 import Dashboard from './pages/Dashboard.tsx';
 import Login from './pages/Auth/Login.tsx';
 import NewWorkout from './pages/NewWorkout.tsx';
+import NewExercise from './pages/NewExercise.tsx';
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -41,6 +42,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <NewWorkout />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/new-exercise'
+          element={
+            <ProtectedRoute user={user}>
+              <NewExercise />
             </ProtectedRoute>
           }
         />
