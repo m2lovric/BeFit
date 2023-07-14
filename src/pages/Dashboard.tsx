@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
+  useEffect;
   return (
     <div className='w-1/5 flex flex-col justify-between'>
       <h2>Dashboard</h2>
