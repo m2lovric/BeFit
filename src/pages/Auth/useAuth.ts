@@ -39,9 +39,21 @@ const signUp = (email: string, password: string) => {
 
 const signIn = (email: string, password: string) => {
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       // Signed in
       console.log(`User ${userCredential.user.email} logged in`);
+      const user = userCredential.user;
+      const usersRef = doc(db, 'users', user.uid);
+      const usersSnap = await getDoc(usersRef);
+
+      if (usersSnap.exists()) {
+        console.log('User doc already created.');
+      } else {
+        setDoc(doc(db, 'users', user.uid), <UserData>{
+          uid: user.uid,
+          weight: [],
+        });
+      }
     })
     .catch((error) => {
       const errorCode = error.code;
