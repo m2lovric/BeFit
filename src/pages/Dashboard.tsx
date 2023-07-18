@@ -11,7 +11,7 @@ const Dashboard = () => {
         <Link to='/new-exercise'>Add new exercise</Link>
       </section>
       <section>
-        <h2>Weight</h2>
+        <Link to='/add-weight'>Weight</Link>
       </section>
       <Link
         to='/new'

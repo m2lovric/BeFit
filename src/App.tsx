@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard.tsx';
 import Login from './pages/Auth/Login.tsx';
 import NewWorkout from './pages/NewWorkout.tsx';
 import NewExercise from './pages/NewExercise.tsx';
+import AddWeight from './pages/AddWeight.tsx';
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -50,6 +51,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <NewExercise />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/add-weight'
+          element={
+            <ProtectedRoute user={user}>
+              <AddWeight />
             </ProtectedRoute>
           }
         />
